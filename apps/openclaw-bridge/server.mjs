@@ -23,7 +23,11 @@ const gatewayBaseUrl = process.env.OPENCLAW_GATEWAY_BASE_URL || "http://127.0.0.
 const upstreamPath = process.env.OPENCLAW_UPSTREAM_PATH || "/v1/chat/completions";
 const upstreamTimeoutMs = Number(process.env.OPENCLAW_UPSTREAM_TIMEOUT_MS || 90000);
 const defaultAgentId = process.env.OPENCLAW_AGENT_ID || "main";
-const upstreamBearer = process.env.OPENCLAW_GATEWAY_BEARER || "";
+const upstreamBearer =
+  process.env.OPENCLAW_GATEWAY_BEARER ||
+  process.env.OPENCLAW_GATEWAY_API_KEY ||
+  process.env.OPENCLAW_API_KEY ||
+  "";
 
 function normalizeBaseUrl(url) {
   return url.replace(/\/+$/, "");
